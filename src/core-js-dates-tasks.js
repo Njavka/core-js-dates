@@ -17,8 +17,14 @@
  * '01 Jan 1970 00:00:00 UTC' => 0
  * '04 Dec 1995 00:12:00 UTC' => 818035920000
  */
-function dateToTimestamp(/* date */) {
-  throw new Error('Not implemented');
+function dateToTimestamp(date) {
+  const elapsed = new Date(date);
+
+  if (Number.isNaN(elapsed.getTime())) {
+    throw new Error('Invalid date format');
+  }
+
+  return Math.floor(elapsed.getTime());
 }
 
 /**
@@ -31,8 +37,16 @@ function dateToTimestamp(/* date */) {
  * Date(2023, 5, 1, 8, 20, 55) => '08:20:55'
  * Date(2015, 10, 20, 23, 15, 1) => '23:15:01'
  */
-function getTime(/* date */) {
-  throw new Error('Not implemented');
+function getTime(date) {
+  const time = new Date(date);
+  if (Number.isNaN(time.getTime())) {
+    throw new Error('Invalid date format');
+  }
+  const hours = String(time.getHours()).padStart(2, '0');
+  const minutes = String(time.getMinutes()).padStart(2, '0');
+  const seconds = String(time.getSeconds()).padStart(2, '0');
+
+  return `${hours}:${minutes}:${seconds}`;
 }
 
 /**
