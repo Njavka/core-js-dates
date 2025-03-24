@@ -288,19 +288,22 @@ function getNextFridayThe13th(date) {
 
   localDate.setDate(localDate.getDate() + 1);
 
-  while (true) {
+  let found = false;
+  while (!found) {
     localDate.setDate(13);
 
     if (localDate.getDay() === 5) {
-      return new Date(
-        localDate.getFullYear(),
-        localDate.getMonth(),
-        localDate.getDate()
-      );
+      found = true;
+    } else {
+      localDate.setMonth(localDate.getMonth() + 1);
     }
-
-    localDate.setMonth(localDate.getMonth() + 1);
   }
+
+  return new Date(
+    localDate.getFullYear(),
+    localDate.getMonth(),
+    localDate.getDate()
+  );
 }
 
 /**
